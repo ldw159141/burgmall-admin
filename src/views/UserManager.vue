@@ -4,9 +4,8 @@
     <div style="margin-top: 20px; border: 0px solid red;margin-bottom: 20px;">
       用户名：<el-input type="text" v-model="searchForm.username" @input="handleSearch" class="input" clearable placeholder="请输入用户名" size="small" style="width: 200px;margin-right: 20px;"></el-input>
       <el-button type="primary" icon="el-icon-search" size="small" class="mr10px" @click="handleSearch">搜索</el-button>
-        </div>
-    
-        <!-- 搜索结束 -->
+    </div>
+    <!-- 搜索结束 -->
     <!-- 新增删除开始 -->
         <div>
           <el-button
@@ -27,21 +26,21 @@
       style="width: 100%"
       @selection-change="handleSelectionChange"
     >
-      <el-table-column type="selection" width="55"> </el-table-column>
+      <el-table-column type="selection"> </el-table-column>
 
-      <el-table-column fixed prop="id" label="ID" width="100">
+      <el-table-column fixed prop="id" label="ID" >
       </el-table-column>
-      <el-table-column prop="username" label="用户名" width="160">
+      <el-table-column prop="username" label="用户名" >
       </el-table-column>
-      <el-table-column prop="password" label="密码" width="160">
+      <!-- <el-table-column prop="password" label="密码" >
+      </el-table-column> -->
+       <el-table-column prop="name" label="姓名" >
       </el-table-column>
-       <el-table-column prop="name" label="姓名" width="160">
+       <el-table-column prop="store" label="店名" >
       </el-table-column>
-       <el-table-column prop="store" label="店名" width="160">
+       <el-table-column prop="address" label="地址" >
       </el-table-column>
-       <el-table-column prop="address" label="地址" width="160">
-      </el-table-column>
-        <el-table-column prop="phone" label="电话" width="160">
+        <el-table-column prop="phone" label="电话">
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
@@ -78,21 +77,23 @@
       :before-close="handleClose"
     >
       <el-form :model="submitForm" :rules="rules" ref="submitForm">
-        <el-form-item prop="username">
+        <el-form-item prop="username" >
+          用户名
           <el-input
             type="text"
             v-model="submitForm.username"
             placeholder="用户名"
           ></el-input>
         </el-form-item>
-        <el-form-item prop="password">
+        <!-- <el-form-item prop="password">
           <el-input
             type="password"
             v-model="submitForm.password"
             placeholder="密码"
           ></el-input>
-        </el-form-item>
+        </el-form-item> -->
            <el-form-item prop="name">
+            姓名
           <el-input
             type="text"
             v-model="submitForm.name"
@@ -100,6 +101,7 @@
           ></el-input>
         </el-form-item>
            <el-form-item prop="store">
+            店名
           <el-input
             type="text"
             v-model="submitForm.store"
@@ -107,6 +109,7 @@
           ></el-input>
         </el-form-item>
            <el-form-item prop="address">
+            地址
           <el-input
             type="text"
             v-model="submitForm.address"
@@ -114,6 +117,7 @@
           ></el-input>
         </el-form-item>
             <el-form-item prop="phone">
+              电话
           <el-input
             type="text"
             v-model="submitForm.phone"
@@ -126,8 +130,9 @@
       </el-form>
       <!-- <el-input v-model="username" placeholder="请输入用户名"></el-input> -->
     </el-drawer>
+    <!-- 抽屉结束 -->
   </div>
-  <!-- 抽屉结束 -->
+  
 </template>
 
 <script>
@@ -270,7 +275,13 @@ this.ids=[]
     //搜索
     handleSearch() {
       this.list()
-    }
+    },
+
+
+    
+  
+
+
 
 
    

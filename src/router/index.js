@@ -12,9 +12,15 @@ const routes = [
     children: [
       { 
     path: '/user',
-    name: '用户管理',
+    name: '商家用户管理',
     component: ()=> import('../views/UserManager.vue')
-   }
+   },
+
+   { 
+    path: '/goods',
+    name: '商品管理',
+    component: ()=> import('../views/GoodsManager.vue')
+   },
       
     ]
   },

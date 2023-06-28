@@ -53,30 +53,31 @@
                     if (valid) {
                        
                         if(this.type == 'systemAdmin'){
-                            this.axios.post('user/login',this.ruleForm).then(res=> {
+                            this.axios.post('login',this.ruleForm).then(res=> {
                                 if (res.code === 200) {
                                     this.$message({
                                     message: "系统管理员登录成功，正在跳转",
                                     type:"success"
                                     })
-                                    let userInfo = res.data
+                                     let userInfo = res
                                     localStorage.setItem("userInfo", JSON.stringify(userInfo))
-                                    localStorage.setItem("token", userInfo.token)
+                                    localStorage.setItem("token",res.token)
                                     setTimeout(() => {
                                         this.$router.push({ path:"/" })
                             },2000)    
                                 }
                             })
                         }else  if(this.type == 'storeAdmin'){
-                            this.axios.post('user/login',this.ruleForm).then(res=> {
+                            this.axios.post('login',this.ruleForm).then(res=> {
                                 if (res.code === 200) {
                                     this.$message({
                                     message: "商家管理员登录成功，正在跳转",
                                     type:"success"
                                     })
-                                    let userInfo = res.data
-                                    localStorage.setItem("userInfo", JSON.stringify(userInfo))
-                                    localStorage.setItem("token", userInfo.token)
+                                 //   let userInfo = res.data
+                                  //  localStorage.setItem("userInfo", JSON.stringify(userInfo))
+                                    //localStorage.setItem("token", userInfo.token)
+                                    localStorage.setItem("token",res.headers.authorization)
                                     setTimeout(() => {
                                         this.$router.push({ path:"/" })
                             },2000)

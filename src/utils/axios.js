@@ -6,14 +6,14 @@ import Element from "element-ui"
 const request = axios.create({
     
     baseURL: "http://localhost:8282/",
-    timeout: 5000,
+    timeout: 8000,
     headers: {
         
     }
 })
 
 request.interceptors.request.use(config => {
-    config.headers["token"] = localStorage.getItem("token")
+    config.headers['Authorization'] = localStorage.getItem("token") 
     return config
 })
 
@@ -23,12 +23,14 @@ request.interceptors.response.use(
 
         let res = response.data
         if (res.code === 200) {
-           // ElementUI.Message.success(res.msg)
+          //  Element.Message.success(res.msg)
              return response.data
         } else {
+
             //重定向||权限不足
+            //这里在引入spring security之后报错了，返回code但是没办法正常处理
             if (res.code === 301 || res.code === 401) {
-               Element.Message.error(res.msg)
+               Element.Message.error(res.mg)
                 router.push({ path: "/login" })
                 return Promise.resolve(res.msg)
             } else {
@@ -39,13 +41,13 @@ request.interceptors.response.use(
             
         }
 
-      
-
-       
+        
     },
     error => {
-        console.log(error);
-        return Promise.reject(error)
+        let res="账号或者密码错误"
+        Element.Message.error(res)
+         return error
+     
     }
 )
 

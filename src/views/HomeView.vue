@@ -3,16 +3,11 @@
         <el-header class="home_header">
             <div class="home_title">BURGER管理系统-系统管理员</div>
             <div class="home_userinfoContainer">
-                <el-dropdown>
-                 
-                  <!-- <span class="el-dropdown-link home_userinfo" v-if="admin!=null">
-                   {{ admin.username }}
-                   <i class="el-icon-arrow-down el-icon--right home_userinfo"></i>
-                  </span> -->
-                   <!-- <span class="el-dropdown-link home_userinfo" v-else>
+                <p  class="el-icon-user-solid" v-if="admin==null" >
                 <router-link to="/login" style="color: #fff;">请登录</router-link>  
-                  </span> -->
-                    <span class="el-dropdown-link home_userinfo">
+                  </p> 
+                <el-dropdown>
+                    <span class="el-dropdown-link home_userinfo" v-if="admin!=null">
                    {{ admin.username }}
                    <i class="el-icon-arrow-down el-icon--right home_userinfo"></i>
                   </span>
@@ -41,11 +36,11 @@
 
                     <el-submenu index="2">
                         <template slot="title"><i class="el-icon-user-solid"></i>商品模块</template>
-                        <el-menu-item index="/" :class="$route.path=='/'?'is-active':''">
-                            <i class="el-icon-folder-add"></i>添加学生
+                        <el-menu-item index="/goods" :class="$route.path=='/'?'is-active':''">
+                            <i class="el-icon-folder-add"></i>商品管理
                         </el-menu-item>
                         <el-menu-item index="/">
-                            <i class="el-icon-document-copy"></i>学生管理
+                            <i class="el-icon-document-copy"></i>商品图片
                         </el-menu-item>
                     </el-submenu>
 
@@ -71,6 +66,7 @@
     </el-container>
 </template>
 <script>
+import ElementUI from 'element-ui';
     export default{
         methods: {
             logout(){
@@ -80,9 +76,12 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(function () {
+                    
                     localStorage.removeItem('userInfo')
+                    window.localStorage.clear()
+                    _this.admin=null
                     _this.$router.replace({path: '/login'})
-                })
+                }).catch(()=>{})
             }
         },
         data(){
@@ -93,6 +92,13 @@
         created() {
             let admin = JSON.parse(window.localStorage.getItem('userInfo'))
           this.admin = admin
+             // 设置一小时的有效期
+             const expire = 1000 *60*60;
+             setTimeout(() => {
+             this.admin=null
+             this.$router.push({ path:"/login" })
+            ElementUI.Message.error("登录失效，请重新登录")
+            }, expire)
         }
     }
 </script>
