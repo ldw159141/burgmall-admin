@@ -33,8 +33,21 @@
                             <i class="el-icon-document-copy"></i>普通用户管理
                         </el-menu-item>
                     </el-submenu>
-
                     <el-submenu index="2">
+                        <template slot="title"><i class="el-icon-user-solid"></i>地址模块</template>
+                        <el-menu-item index="/address" :class="$route.path=='/'?'is-active':''">
+                            <i class="el-icon-folder-add"></i>用户地址
+                        </el-menu-item>
+                    </el-submenu>
+                    <el-submenu index="3">
+                        <template slot="title"><i class="el-icon-user-solid"></i>权限模块</template>
+                        <el-menu-item index="/role" :class="$route.path=='/'?'is-active':''">
+                            <i class="el-icon-folder-add"></i>权限类别
+                        </el-menu-item>
+                      
+                    </el-submenu>
+
+                    <el-submenu index="4">
                         <template slot="title"><i class="el-icon-user-solid"></i>商品模块</template>
                         <el-menu-item index="/goods" :class="$route.path=='/'?'is-active':''">
                             <i class="el-icon-folder-add"></i>商品管理
@@ -42,6 +55,14 @@
                         <el-menu-item index="/">
                             <i class="el-icon-document-copy"></i>商品图片
                         </el-menu-item>
+                    </el-submenu>
+
+                    <el-submenu index="5">
+                        <template slot="title"><i class="el-icon-user-solid"></i>商品类别</template>
+                        <el-menu-item index="/type" :class="$route.path=='/'?'is-active':''">
+                            <i class="el-icon-folder-add"></i>商品类别
+                        </el-menu-item>
+                        
                     </el-submenu>
 
 
@@ -80,7 +101,7 @@ import ElementUI from 'element-ui';
                     localStorage.removeItem('userInfo')
                     window.localStorage.clear()
                     _this.admin=null
-                    _this.$router.replace({path: '/login'})
+                    _this.$router.replace({path: '/'})
                 }).catch(()=>{})
             }
         },
@@ -96,7 +117,7 @@ import ElementUI from 'element-ui';
              const expire = 1000 *60*60;
              setTimeout(() => {
              this.admin=null
-             this.$router.push({ path:"/login" })
+             this.$router.push({ path:"/" })
             ElementUI.Message.error("登录失效，请重新登录")
             }, expire)
         }

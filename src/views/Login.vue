@@ -63,7 +63,7 @@
                                     localStorage.setItem("userInfo", JSON.stringify(userInfo))
                                     localStorage.setItem("token",res.token)
                                     setTimeout(() => {
-                                        this.$router.push({ path:"/" })
+                                        this.$router.push({ path:"/home" })
                             },2000)    
                                 }
                             })
@@ -79,7 +79,7 @@
                                     //localStorage.setItem("token", userInfo.token)
                                     localStorage.setItem("token",res.headers.authorization)
                                     setTimeout(() => {
-                                        this.$router.push({ path:"/" })
+                                        this.$router.push({ path:"/home" })
                             },2000)
                                   
                                 }

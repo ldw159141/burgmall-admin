@@ -192,14 +192,14 @@ export default{
       multipleSelection: [],
       ids:[],
       submitForm: {
-        coder: "",
-        title: "",
-        description: '',
-        price:'',
-        promoPrice:'',
-        stock:'',
-        url:'',
-        typeId:{}
+        // coder: "",
+        // title: "",
+        // description: '',
+        // price:'',
+        // promoPrice:'',
+        // stock:'',
+        // url:'',
+        // typeId:''
 
      
       },

@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'home',
     component: HomeView,
     children: [
@@ -15,11 +15,27 @@ const routes = [
     name: '商家用户管理',
     component: ()=> import('../views/UserManager.vue')
    },
+   { 
+    path: '/address',
+    name: '地址模块',
+    component: ()=> import('../views/AddressManager.vue')
+   },
+   { 
+    path: '/role',
+    name: '权限类别',
+    component: ()=> import('../views/RoleManager.vue')
+   },
 
    { 
     path: '/goods',
     name: '商品管理',
     component: ()=> import('../views/GoodsManager.vue')
+   },
+
+   { 
+    path: '/type',
+    name: '商品类别',
+    component: ()=> import('../views/TypeManager.vue')
    },
       
     ]
@@ -33,7 +49,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
    {
-    path: '/login',
+    path: '/',
     name: '登录',
     component: ()=> import('../views/Login.vue')
    }
