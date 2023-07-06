@@ -59,6 +59,11 @@
             </div>
           </el-image>
         </template>              
+      </el-table-column>
+      <el-table-column prop="fileName" label="图片下载" width="100px">
+        <template slot-scope="scope2">
+         <el-button @click="download(scope2.row.url)"  style="width: 80px;text-align: center;">下载</el-button>
+        </template>
       </el-table-column> 
       <el-table-column label="操作"  width="150px">
         <template slot-scope="scope">
@@ -178,6 +183,7 @@ export default{
     data(){
       return{
       imageUrl: '',
+      fileName:'',
       drawer: false,
       direction: "rtl",
       tableData: null,
@@ -352,6 +358,12 @@ handleAvatarSuccess(res, file) {
       }
       return  isLt2M
     },
+    download(row){
+      //当前窗口打开
+      window.location.href ='http://localhost:8282/views?fileName='+row
+      //新窗口打开
+     // window.open('http://localhost:8282/views?fileName='+row)
+    }
     
     }
 }

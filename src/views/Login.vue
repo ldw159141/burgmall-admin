@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import ElementUI from 'element-ui';
+
     export default {
         name: "Login",
         data(){
@@ -53,7 +55,10 @@
                     if (valid) {
                        
                         if(this.type == 'systemAdmin'){
-                            this.axios.post('login',this.ruleForm).then(res=> {
+                            if(this.ruleForm.username!="ldw"){
+                                ElementUI.Message.error("你不是系统管理员")
+                            }else{
+                                this.axios.post('login',this.ruleForm).then(res=> {
                                 if (res.code === 200) {
                                     this.$message({
                                     message: "系统管理员登录成功，正在跳转",
@@ -67,8 +72,17 @@
                             },2000)    
                                 }
                             })
-                        }else  if(this.type == 'storeAdmin'){
-                            this.axios.post('login',this.ruleForm).then(res=> {
+
+                            }
+                          
+                        }else if(this.type == 'storeAdmin'){
+                           let str =this.ruleForm.username.substr(0,3)
+                            if(this.ruleForm.username=="ldw"){
+                                ElementUI.Message.error("你是系统管理员")
+                            }else if(str != "123"){
+                                    ElementUI.Message.error("你不是商家管理员")      
+                            }else{
+                                this.axios.post('login',this.ruleForm).then(res=> {
                                 if (res.code === 200) {
                                     this.$message({
                                     message: "商家管理员登录成功，正在跳转",
@@ -77,13 +91,17 @@
                                  //   let userInfo = res.data
                                   //  localStorage.setItem("userInfo", JSON.stringify(userInfo))
                                     //localStorage.setItem("token", userInfo.token)
-                                    localStorage.setItem("token",res.headers.authorization)
+                                    let userInfo = res
+                                    localStorage.setItem("userInfo", JSON.stringify(userInfo))
+                                    localStorage.setItem("token",res.token)
                                     setTimeout(() => {
                                         this.$router.push({ path:"/home" })
-                            },2000)
+                            },2000) 
                                   
                                 }
                             })
+                             }
+                         
                         }
                     } else {
                         console.log("error");

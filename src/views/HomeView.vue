@@ -29,7 +29,7 @@
                         <el-menu-item index="/user" :class="$route.path=='/user'?'is-active':''">
                             <i class="el-icon-user-solid"></i>商家用户管理
                         </el-menu-item>
-                        <el-menu-item index="/" :class="$route.path=='/'?'is-active':''">
+                        <el-menu-item index="/home" :class="$route.path=='/home'?'is-active':''">
                             <i class="el-icon-document-copy"></i>普通用户管理
                         </el-menu-item>
                     </el-submenu>
@@ -52,7 +52,7 @@
                         <el-menu-item index="/goods" :class="$route.path=='/'?'is-active':''">
                             <i class="el-icon-folder-add"></i>商品管理
                         </el-menu-item>
-                        <el-menu-item index="/">
+                        <el-menu-item index="/home">
                             <i class="el-icon-document-copy"></i>商品图片
                         </el-menu-item>
                     </el-submenu>
