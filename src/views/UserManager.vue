@@ -181,8 +181,13 @@ export default {
     list() {
       let data=Object.assign(this.searchForm,this.userQuery)
       this.axios.post("user/page",data).then((res) => {
-        this.tableData = res.data.list;
+        if(res.data == null){
+          console.log(111);
+        }else{
+          this.tableData = res.data.list;
         this.userQuery.total=res.data.total
+        }
+    
       });
     },
     //点击跳转页面，更改pageNum

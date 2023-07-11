@@ -149,7 +149,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item prop="typeId">
-              类型：1热卖商品，2轮播图，3普通商品
+              类型：1热卖商品，2轮播图，3普通商品,4披萨类
           <el-input
             type="text"
             v-model="submitForm.typeId"
@@ -222,7 +222,8 @@ export default{
       map: {
           1: '热卖商品',
           2: '轮播图',
-          3: '普通商品'
+          3: '普通商品',
+          4: '披萨类'
       }
 
       }
